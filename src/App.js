@@ -10,17 +10,17 @@ function App() {
   const routes = [
     { id: 1, name: "Home", link: './home' },
     { id: 2, name: "Shop", link: './shop' },
-    { id: 3, name: "Deald", link: './deals' },
+    { id: 3, name: "Deals", link: './deals' },
     { id: 4, name: "Coupons", link: './coupons' },
     { id: 5, name: "About", link: './about' }
   ]
   return (
     <div className="App">
-      <nav>
-        <div onClick={() => setOpen(!open)} className='w-6 h-6 md:hidden bg-slate-600 text-zinc-50 flex justify-end'>
+      <nav className='flex py-5 justify-start bg-slate-600'>
+        <div onClick={() => setOpen(!open)} className='ml-5 w-6 h-6 md:hidden bg-slate-600 text-zinc-50 '>
           {open ? <XIcon></XIcon> : <MenuAlt1Icon ></MenuAlt1Icon>}
         </div>
-        <ul className={`md:flex justify-end align-center absolute duration-500 ease-in bg-slate-600 text-zinc-50 ${open ? 'top-6' : 'top-[-120px]'}`}>
+        <ul className={`md:flex flex md:flex-row md:justify-center flex-col items-center pl-11 md:w-full w-52 h-full absolute md:sticky top-14  duration-500 ease-out bg-slate-600 text-zinc-50  ${open ? 'left-0 top-6 ' : 'left-[-220px]'}`}>
           {
             routes.map(route => <Link
               key={route.id}
