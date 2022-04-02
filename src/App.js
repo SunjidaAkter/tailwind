@@ -1,34 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
-import Link from './Component/Link/Link';
-import { MenuAlt1Icon, XIcon } from '@heroicons/react/solid'
 import { useState } from 'react';
+import Recharts from './Component/Recharts/Recharts';
+import { Route, Routes } from 'react-router-dom';
+import Home from './Component/Home/Home';
+import About from './Component/About/About';
+import Shop from './Component/Shop/Shop';
+import Animation from './Component/Animation/Animation';
+import Header from './Component/Header/Header';
+import NotFound from './Component/NotFound/NotFound';
+import ProductDetail from './Component/ProductDetail/ProductDetail';
 
 
 function App() {
   const [open, setOpen] = useState(false);
-  const routes = [
-    { id: 1, name: "Home", link: './home' },
-    { id: 2, name: "Shop", link: './shop' },
-    { id: 3, name: "Deals", link: './deals' },
-    { id: 4, name: "Coupons", link: './coupons' },
-    { id: 5, name: "About", link: './about' }
-  ]
   return (
     <div className="App">
-      <nav className='flex py-5 justify-start bg-slate-600'>
-        <div onClick={() => setOpen(!open)} className='ml-5 w-6 h-6 md:hidden bg-slate-600 text-zinc-50 '>
-          {open ? <XIcon></XIcon> : <MenuAlt1Icon ></MenuAlt1Icon>}
-        </div>
-        <ul className={`md:flex flex md:flex-row md:justify-center flex-col items-center pl-11 md:w-full w-52 h-full absolute md:sticky top-14  duration-500 ease-out bg-slate-600 text-zinc-50  ${open ? 'left-0 top-6 ' : 'left-[-220px]'}`}>
-          {
-            routes.map(route => <Link
-              key={route.id}
-              route={route}
-            ></Link>)
-          }
-        </ul>
-      </nav>
+      <Header open={open} setOpen={setOpen}></Header>
+      <Routes>
+        <Route path='/' element={<Home></Home>}></Route>
+        <Route path='/about' element={<About></About>}></Route>
+        <Route path='/recharts' element={<Recharts open={open} setOpen={setOpen}></Recharts>}></Route>
+        <Route path='/shop' element={<Shop></Shop>}></Route>
+        <Route path='/product/:id' element={<ProductDetail></ProductDetail>}></Route>
+        <Route path='/animation' element={<Animation></Animation>}></Route>
+        <Route path='*' element={<NotFound></NotFound>}></Route>
+      </Routes>
+
+
     </div>
   );
 }
